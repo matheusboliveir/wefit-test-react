@@ -1,26 +1,50 @@
-import { Route, Routes } from "react-router-dom";
-import Inicio from "./pages/inicio";
-import Carrinho from "./pages/carrinho";
-import CompraRealizada from "./pages/compra-realizada";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createContext, useState } from "react";
-import Estrutura from "./pages/estrutura";
-import Cliente from "./shared/@types/cliente";
-import { pegarCliente } from "./shared/service/armazenamentoDeCliente";
+import Carrinho, { item } from "./shared/@types/carrinho";
+import {
+  pegarCarrinho,
+  salvarCarrinho,
+} from "./shared/service/armazenamentoDeCarrinho";
+import EstiloGlobal from "./EstiloGlobal";
+import CarrinhoPagina from "./pages/carrinho";
+import InicioPagina from "./pages/inicio";
+import EstruturaPagina from "./pages/estrutura";
+import CompraRealizadaPagina from "./pages/compra-realizada";
 
-export const ClienteContext = createContext({});
+export const CarrinhoContext = createContext({});
 
 function AppRoutes() {
-  const [cliente, setCliente] = useState<Cliente>(pegarCliente());
+  const [carrinho, setCarrinho] = useState<Carrinho>(pegarCarrinho());
+  const atualizarCarrinho = (itens: item[]) => {
+    let totalItens = 0;
+    let totalValor = 0;
+    for (let i = 0; i < itens.length; i++) {
+      const item = itens[i];
+      totalItens += item.quantidade;
+      totalValor += item.quantidade * item.produto.price;
+    }
+    const carrinhoAtualizado: Carrinho = {
+      itens,
+      totalItens,
+      totalValor,
+    };
+    setCarrinho(carrinhoAtualizado);
+    salvarCarrinho(carrinhoAtualizado);
+  };
+
   return (
-    <ClienteContext.Provider value={{ cliente, setCliente }}>
-      <Routes>
-        <Route Component={Estrutura} path="/">
-          <Route index Component={Inicio} />
-          <Route path="carrinho" Component={Carrinho} />
-          <Route path="compra-realizada" Component={CompraRealizada} />
-        </Route>
-      </Routes>
-    </ClienteContext.Provider>
+    <CarrinhoContext.Provider value={{ carrinho, atualizarCarrinho }}>
+      <EstiloGlobal />
+      <BrowserRouter>
+        <Routes>
+          <Route Component={EstruturaPagina} path="/">
+            <Route index Component={InicioPagina} />
+            <Route path="carrinho" Component={CarrinhoPagina} />
+            <Route path="compra-realizada" Component={CompraRealizadaPagina} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CarrinhoContext.Provider>
   );
 }
 
