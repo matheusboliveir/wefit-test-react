@@ -8,43 +8,6 @@ import { Cartao, Botao } from "../../../shared/UI";
 import { ReactComponent as Carrinho } from "../../../assets/carrinho.svg";
 import mascaraMonetaria from "../../../shared/util/mascara-monetaria";
 
-const ConteudoDoCartao = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .filme {
-    &__titulo {
-      font-weight: 700;
-      font-size: 12px;
-      margin: 7px 0 2px;
-    }
-    &__preco {
-      color: #2f2e41;
-      font-size: 16px;
-      font-weight: 700;
-    }
-    &__poster {
-      height: 188px;
-      width: fit-content;
-    }
-  }
-`;
-
-const TextoDoBotao = styled.span`
-  display: flex;
-  gap: 12px;
-  .botao {
-    &__thin {
-      display: flex;
-      gap: 4px;
-      font-weight: 400;
-    }
-    &__acao {
-      min-width: 157px;
-    }
-  }
-`;
-
 interface Props {
   filme: Filme;
 }
@@ -98,5 +61,42 @@ function CartaoFilme({ filme }: Props) {
     </Cartao>
   );
 }
+
+const ConteudoDoCartao = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .filme {
+    &__titulo {
+      font-weight: 700;
+      font-size: 12px;
+      margin: 7px 0 2px;
+    }
+    &__preco {
+      color: #2f2e41;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    &__poster {
+      height: 188px;
+      width: fit-content;
+    }
+  }
+`;
+
+const TextoDoBotao = styled.span`
+  display: flex;
+  gap: 12px;
+  .botao {
+    &__thin {
+      display: flex;
+      gap: 4px;
+      font-weight: 400;
+    }
+    &__acao {
+      min-width: 157px;
+    }
+  }
+`;
 
 export default CartaoFilme;

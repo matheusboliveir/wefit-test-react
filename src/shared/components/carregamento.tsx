@@ -1,6 +1,14 @@
 import { styled } from "styled-components";
 import RodaCarregamento from "../../assets/roda-carregamento.png";
 
+function Carregamento() {
+  return (
+    <Container>
+      <img src={RodaCarregamento} className="roda" />
+    </Container>
+  );
+}
+
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -20,13 +28,5 @@ const Container = styled.div`
     }
   }
 `;
-
-function Carregamento() {
-  return (
-    <Container>
-      <img src={RodaCarregamento} className="roda" />
-    </Container>
-  );
-}
 
 export default Carregamento;

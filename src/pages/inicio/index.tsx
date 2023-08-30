@@ -6,14 +6,6 @@ import Filme from "../../shared/@types/filme";
 import CartaoFilme from "./components/cartao-filme";
 import Carregamento from "../../shared/components/carregamento";
 
-const GradeDeFilmes = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 309px);
-  grid-template-rows: auto;
-  gap: 1rem;
-  justify-content: center;
-`;
-
 function InicioPagina() {
   const [filmesDisponiveis, setFilmesDisponiveis] = useState<Filme[]>();
 
@@ -36,5 +28,13 @@ function InicioPagina() {
     <Carregamento />
   );
 }
+
+const GradeDeFilmes = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 309px);
+  grid-template-rows: auto;
+  gap: 1rem;
+  justify-content: center;
+`;
 
 export default InicioPagina;
