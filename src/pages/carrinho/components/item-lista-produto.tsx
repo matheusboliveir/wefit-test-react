@@ -40,9 +40,9 @@ function ItemTabelaProduto({
         <input
           value={item.quantidade}
           className="quantidade__caixa-de-texto"
-          onChange={(e) =>
-            modificarQuantidade(item.produto.id, parseInt(e.target.value))
-          }
+          onChange={(e) => {
+            modificarQuantidade(item.produto.id, parseInt(e.target.value) || 1);
+          }}
         />
         <button
           className="produto__botao"
