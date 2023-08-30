@@ -33,7 +33,7 @@ function ItemTabelaProduto({
         <button
           className="produto__botao"
           onClick={() =>
-            modificarQuantidade(item.produto.id, --item.quantidade)
+            modificarQuantidade(item.produto.id, item.quantidade - 1)
           }>
           <BotaoMenos />
         </button>
@@ -47,7 +47,7 @@ function ItemTabelaProduto({
         <button
           className="produto__botao"
           onClick={() =>
-            modificarQuantidade(item.produto.id, ++item.quantidade)
+            modificarQuantidade(item.produto.id, 1 + item.quantidade)
           }>
           <BotaoMais />
         </button>
@@ -101,6 +101,7 @@ const Produto = styled.li`
       border: none;
       width: 18px;
       height: 18px;
+      cursor: pointer;
     }
     &__lixeira {
       @media (max-width: 640px) {

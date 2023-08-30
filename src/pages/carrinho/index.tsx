@@ -23,7 +23,7 @@ function CarrinhoPagina() {
 
   const modificarProduto = (id: number, quantidade: number) => {
     const novoCarrinho = [...carrinho.itens];
-    if (quantidade === 0) return;
+    if (quantidade <= 0) return;
     for (let i = 0; i < novoCarrinho.length; i++) {
       const item = novoCarrinho[i];
       if (item.produto.id === id) {
